@@ -72,6 +72,9 @@ class YatedoAPI(object):
         print 'Found %s results, collecting them..' % (num)
         i = 0
         while i * 16 < num:
-            res['employees'].append(self.search(company_name, i * 16, i + 1))
+            new_employees = self.search(company_name, i * 16, i + 1)
+            for employee in new_employees:
+                res['employees'].append(employee)
             i = i + 1
-        return json.dumps(res)
+        return res
+        # return json.dumps(res)
